@@ -17,6 +17,7 @@ namespace WorkTime
     {
         DateTime Came;
         bool GO;
+        WorkCalendar WC = new WorkCalendar();
         
         public Form1()
         {
