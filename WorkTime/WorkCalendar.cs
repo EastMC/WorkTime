@@ -19,17 +19,30 @@ namespace WorkTime
     }
     class WorkCalendar
     {
-        private static int[,] workCalendar;
+        private static int[,] workCalendar = new int[12, 31];
+        private static string url;
+
+        public string Url
+        {
+            set
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(value);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    url = value;
+                }
+                else url = "";
+            }
+            get { return url; }            
+        }
 
         static WorkCalendar()
         {
-            workCalendar = new int[12, 31];
         }
         public WorkCalendar()
         {
-            workCalendar = new int[12, 31];
-            ParseHTML(GetHTMLFromWebSite("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html"));
-            
+            ParseHTML(GetHTMLFromWebSite("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html"));            
         }
 
         private string GetHTMLFromWebSite(string _url)

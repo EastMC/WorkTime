@@ -32,9 +32,10 @@ namespace WorkTime
 
         }
         
+        private void ReadURLFromIni(string _path)
+        {
 
-        
-
+        }
         private void T_Tick(object sender, EventArgs e)
         {
             labelTimeNow.Text = DateTime.Now.ToString().Split(' ')[1];
