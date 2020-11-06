@@ -52,7 +52,7 @@ namespace WorkTime
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 HTMLCode = readStream.ReadToEnd();
-                //Console.WriteLine(HTMLCode);
+                Console.WriteLine(HTMLCode);
                 response.Close();
                 readStream.Close();
             }
