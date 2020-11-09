@@ -31,7 +31,6 @@ namespace WorkTime
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            Console.WriteLine(WC.GetWorkDateTimeFromDate(dt));
 
         }
         

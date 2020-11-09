@@ -133,13 +133,11 @@ namespace WorkTime
         }
 
 
-        DateTime GetWorkDayTimeForToday()
+        public int GetWorkDayTimeForToday()
         {
-            DateTime TodayWorkDayTime = new DateTime();
-
-
-
-            return TodayWorkDayTime;
+            DateTime now = DateTime.Now;
+            DateTime today = new DateTime(now.Year, now.Month, now.Day);
+            return GetWorkDateTimeFromDate(today);
         }
     }
 }
