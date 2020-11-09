@@ -35,6 +35,8 @@
             this.labelTimeGo = new System.Windows.Forms.Label();
             this.labelGo = new System.Windows.Forms.Label();
             this.labelNow = new System.Windows.Forms.Label();
+            this.labelWeekLeft = new System.Windows.Forms.Label();
+            this.labelTimeWeekLeft = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCame
@@ -52,10 +54,11 @@
             // 
             this.labelTimeNow.AutoSize = true;
             this.labelTimeNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTimeNow.Location = new System.Drawing.Point(12, 228);
+            this.labelTimeNow.Location = new System.Drawing.Point(12, 190);
             this.labelTimeNow.Name = "labelTimeNow";
-            this.labelTimeNow.Size = new System.Drawing.Size(0, 73);
+            this.labelTimeNow.Size = new System.Drawing.Size(266, 73);
             this.labelTimeNow.TabIndex = 1;
+            this.labelTimeNow.Text = "             ";
             // 
             // maskedTextBoxCame
             // 
@@ -72,36 +75,59 @@
             // 
             this.labelTimeGo.AutoSize = true;
             this.labelTimeGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTimeGo.Location = new System.Drawing.Point(12, 397);
+            this.labelTimeGo.Location = new System.Drawing.Point(12, 321);
             this.labelTimeGo.Name = "labelTimeGo";
-            this.labelTimeGo.Size = new System.Drawing.Size(0, 73);
+            this.labelTimeGo.Size = new System.Drawing.Size(248, 73);
             this.labelTimeGo.TabIndex = 3;
+            this.labelTimeGo.Text = "            ";
             // 
             // labelGo
             // 
             this.labelGo.AutoSize = true;
             this.labelGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelGo.Location = new System.Drawing.Point(96, 351);
+            this.labelGo.Location = new System.Drawing.Point(42, 283);
             this.labelGo.Name = "labelGo";
-            this.labelGo.Size = new System.Drawing.Size(116, 31);
+            this.labelGo.Size = new System.Drawing.Size(234, 31);
             this.labelGo.TabIndex = 4;
-            this.labelGo.Text = "Уходить";
+            this.labelGo.Text = "Рабочий день до:";
             // 
             // labelNow
             // 
             this.labelNow.AutoSize = true;
             this.labelNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelNow.Location = new System.Drawing.Point(96, 179);
+            this.labelNow.Location = new System.Drawing.Point(96, 154);
             this.labelNow.Name = "labelNow";
-            this.labelNow.Size = new System.Drawing.Size(107, 31);
+            this.labelNow.Size = new System.Drawing.Size(115, 31);
             this.labelNow.TabIndex = 5;
-            this.labelNow.Text = "Сейчас";
+            this.labelNow.Text = "Сейчас:";
+            // 
+            // labelWeekLeft
+            // 
+            this.labelWeekLeft.AutoSize = true;
+            this.labelWeekLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWeekLeft.Location = new System.Drawing.Point(30, 425);
+            this.labelWeekLeft.Name = "labelWeekLeft";
+            this.labelWeekLeft.Size = new System.Drawing.Size(261, 31);
+            this.labelWeekLeft.TabIndex = 6;
+            this.labelWeekLeft.Text = "Осталось в неделе:";
+            // 
+            // labelTimeWeekLeft
+            // 
+            this.labelTimeWeekLeft.AutoSize = true;
+            this.labelTimeWeekLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTimeWeekLeft.Location = new System.Drawing.Point(12, 461);
+            this.labelTimeWeekLeft.Name = "labelTimeWeekLeft";
+            this.labelTimeWeekLeft.Size = new System.Drawing.Size(248, 73);
+            this.labelTimeWeekLeft.TabIndex = 7;
+            this.labelTimeWeekLeft.Text = "            ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 502);
+            this.ClientSize = new System.Drawing.Size(316, 608);
+            this.Controls.Add(this.labelTimeWeekLeft);
+            this.Controls.Add(this.labelWeekLeft);
             this.Controls.Add(this.labelNow);
             this.Controls.Add(this.labelGo);
             this.Controls.Add(this.labelTimeGo);
@@ -128,6 +154,8 @@
         private System.Windows.Forms.Label labelTimeGo;
         private System.Windows.Forms.Label labelGo;
         private System.Windows.Forms.Label labelNow;
+        private System.Windows.Forms.Label labelWeekLeft;
+        private System.Windows.Forms.Label labelTimeWeekLeft;
     }
 }
 

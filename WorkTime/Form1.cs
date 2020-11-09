@@ -69,7 +69,7 @@ namespace WorkTime
             Int32.TryParse(maskedTextBoxCame.Text.Split(':')[1], out m);
 
             Came = DateTime.Today;            
-            Came = Came.AddHours(h+9);
+            Came = Came.AddHours(h+WC.GetWorkDayTimeForToday());
             Came = Came.AddMinutes(m);
 
             labelTimeGo.Text = Came.ToString().Split(' ')[1];
@@ -84,6 +84,7 @@ namespace WorkTime
 
 
         }
+              
 
         private void AddConfig(string _text)
         {
@@ -92,6 +93,7 @@ namespace WorkTime
                 sw.WriteLine(_text);
             }
         }
+
 
 
         private void textBox1_Validating(object sender, CancelEventArgs e)
