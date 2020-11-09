@@ -37,12 +37,9 @@ namespace WorkTime
             get { return url; }            
         }
 
-        static WorkCalendar()
+        public void InitializeCalendar(string _url)
         {
-        }
-        public WorkCalendar()
-        {
-            ParseHTML(GetHTMLFromWebSite("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html"));            
+            ParseHTML(GetHTMLFromWebSite(_url));
         }
 
         private string GetHTMLFromWebSite(string _url)
@@ -118,11 +115,6 @@ namespace WorkTime
                     else continue;
                 }
             }
-
-            //foreach(object o in workCalendar.Keys)
-                //Console.WriteLine($"{o} {workCalendar[(DateTime)o]}");
-
-
         }
 
         private static int GetWorkHoursFromParsedHTMLClassName(string _className)
@@ -135,13 +127,9 @@ namespace WorkTime
         }
 
 
-        DateTime GetWorkDateTimeFromDate(DateTime date)
+        public int GetWorkDateTimeFromDate(DateTime date)
         {
-            DateTime WorkDayTime = new DateTime();
-
-
-
-            return WorkDayTime;
+            return workCalendar.Keys.Contains(date) ? workCalendar[date] : 0; 
         }
 
 

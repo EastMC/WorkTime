@@ -28,7 +28,10 @@ namespace WorkTime
             t.Tick += T_Tick;
             t.Start();
             TopMost = true;
-            GO = false;          
+            GO = false;
+
+            WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
+            Console.WriteLine(WC.GetWorkDateTimeFromDate(dt));
 
         }
         
