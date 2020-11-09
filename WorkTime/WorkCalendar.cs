@@ -19,7 +19,7 @@ namespace WorkTime
     }
     class WorkCalendar
     {
-        private static int[,] workCalendar = new int[12, 31];
+        private static Dictionary<DateTime, int> workCalendar = new Dictionary<DateTime, int>();        
         private static string url;
 
         public string Url
@@ -65,7 +65,7 @@ namespace WorkTime
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 HTMLCode = readStream.ReadToEnd();
-                Console.WriteLine(HTMLCode);
+                //Console.WriteLine(HTMLCode);
                 response.Close();
                 readStream.Close();
             }
@@ -84,6 +84,7 @@ namespace WorkTime
 
         private static void FillCalendarFromParsedHTML(IEnumerable<AngleSharp.Dom.IElement> _parsedHTML)
         {
+            int[,] workHoursMatrix = new int[12, 31];
             int lastDay = 0;
             int currentMonth = 0;
             foreach (var item in _parsedHTML)
@@ -94,15 +95,34 @@ namespace WorkTime
                 {
                     currentMonth++;
                 }
-                workCalendar[currentMonth, currentDay] = currentWorkHours;
+                workHoursMatrix[currentMonth, currentDay] = currentWorkHours;
                 lastDay = currentDay;
             }
 
-            //for (int i = 0; i < 12; i++)
-            //    for (int j = 0; j < 31; j++)
-            //        Console.WriteLine($"{j+1}.{i+1} - {workCalendar[i, j]}");
+            FillCalendarFromHourMatrix(workHoursMatrix);
+        }
 
-            //  Console.WriteLine($"{item.TextContent} {item.ClassName}");
+        private static void FillCalendarFromHourMatrix(int[,] _workHoursMatrix)
+        {
+            workCalendar = new Dictionary<DateTime, int>();
+            DateTime currentDate = new DateTime(DateTime.Now.Year, 1, 1);
+            for (int i = 0; i < _workHoursMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < _workHoursMatrix.GetLength(1); j++)
+                {
+                    if (currentDate.Month == i + 1 && currentDate.Day == j + 1)
+                    {
+                        workCalendar.Add(currentDate, _workHoursMatrix[i, j]);
+                        currentDate = currentDate.AddDays(1);
+                    }
+                    else continue;
+                }
+            }
+
+            //foreach(object o in workCalendar.Keys)
+                //Console.WriteLine($"{o} {workCalendar[(DateTime)o]}");
+
+
         }
 
         private static int GetWorkHoursFromParsedHTMLClassName(string _className)
