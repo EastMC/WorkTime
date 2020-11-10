@@ -10,7 +10,6 @@ using System.IO;
 
 namespace WorkTime
 {
-
     enum DayType
     {
         FullWork = 8,
@@ -102,7 +101,7 @@ namespace WorkTime
         private static void FillCalendarFromHourMatrix(int[,] _workHoursMatrix)
         {
             workCalendar = new Dictionary<DateTime, int>();
-            DateTime currentDate = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime currentDate = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
             for (int i = 0; i < _workHoursMatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < _workHoursMatrix.GetLength(1); j++)
@@ -127,9 +126,10 @@ namespace WorkTime
         }
 
 
-        public int GetWorkDateTimeFromDate(DateTime date)
+        public int GetWorkDateTimeFromDate(DateTime _date)
         {
-            return workCalendar.Keys.Contains(date) ? workCalendar[date] : 0; 
+            DateTime pureDate = new DateTime(_date.Year, _date.Month, _date.Day,0,0,0);
+            return workCalendar.Keys.Contains(pureDate) ? workCalendar[pureDate] : 0; 
         }
 
 
@@ -138,6 +138,25 @@ namespace WorkTime
             DateTime now = DateTime.Now;
             DateTime today = new DateTime(now.Year, now.Month, now.Day);
             return GetWorkDateTimeFromDate(today);
+        }
+
+        public DateTime GetThisWeekWorkTime()
+        {
+            DateTime weekWorkTime = new DateTime();
+            DateTime currentDay = DateTime.Now;
+            while (currentDay.DayOfWeek != DayOfWeek.Monday)
+            {
+                currentDay = currentDay.AddDays(-1);
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                weekWorkTime = weekWorkTime.AddHours(GetWorkDateTimeFromDate(currentDay));
+                currentDay = currentDay.AddDays(1);
+            }
+
+            Console.WriteLine(weekWorkTime);
+            return weekWorkTime;
         }
     }
 }
