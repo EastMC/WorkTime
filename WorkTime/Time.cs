@@ -44,6 +44,13 @@ namespace WorkTime
           
         }
 
+        public static Time operator -(Time t1, Time t2)
+        {
+            Time result = t1;
+            t1.ReduceTime(t2.hours, t2.minutes, t2.seconds);
+            return result;
+        }
+
         public void ReduceTime(int _h, int _m, int _s)
         {
             int allSeconds = seconds + minutes * 60 + hours * 60 * 60;
