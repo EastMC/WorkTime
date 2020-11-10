@@ -32,8 +32,8 @@ namespace WorkTime
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            weekTimeLeft = GetLeftWeekTime();//еще залезть в файл, достать отработанное
-                       
+            weekTimeLeft = GetLeftWeekTime();
+            Console.WriteLine(weekTimeLeft);           
 
         }
 
@@ -49,7 +49,16 @@ namespace WorkTime
                 {
                     using (StreamReader sr = new StreamReader("config.txt"))
                     {
-                        string leftWorkTime = "";
+                        string read = sr.ReadLine();
+                        string leftWorkTimeString = string.Empty;
+                        while (read != null)
+                        {
+                            leftWorkTimeString = read;
+                            read = sr.ReadLine();
+                        }
+                        return new Time(Convert.ToInt32(leftWorkTimeString.Split(':')[0]),
+                            Convert.ToInt32(leftWorkTimeString.Split(':')[1]),
+                            Convert.ToInt32(leftWorkTimeString.Split(':')[2]));
                     }
                 }
             }
@@ -57,6 +66,7 @@ namespace WorkTime
             {
                 MessageBox.Show("Отсутствует файл \"config.txt\" или в " +
                     "существующем файле некорректная запись оставшегося рабочего времени.");
+                this.Close();
             }
 
             return new Time();
@@ -161,9 +171,7 @@ namespace WorkTime
             string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
             string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
             AddConfig(this.Text + " " + H + ":" + M);
-
-
-
+            AddConfig(weekTimeLeft.ToString());
         }
     }
 }
