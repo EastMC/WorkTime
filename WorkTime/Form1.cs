@@ -32,13 +32,52 @@ namespace WorkTime
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            weekTimeLeft = WC.GetThisWeekWorkTime() - GetLeftWeekTime();//еще залезть в файл, достать отработанное
+            weekTimeLeft = GetLeftWeekTime();//еще залезть в файл, достать отработанное
+                       
 
         }
 
         private Time GetLeftWeekTime()
         {
+            try
+            {
+                if (IsWorkWeekStart())
+                {
+                    return WC.GetThisWeekWorkTime();
+                }
+                else
+                {
+                    using (StreamReader sr = new StreamReader("config.txt"))
+                    {
+                        string leftWorkTime = "";
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Отсутствует файл \"config.txt\" или в " +
+                    "существующем файле некорректная запись оставшегося рабочего времени.");
+            }
+
             return new Time();
+        }
+
+        private bool IsWorkWeekStart()
+        {
+            DateTime currentDate = DateTime.Now;
+            if (WC.GetWorkDayTimeForToday() == 0) return false;
+
+            bool answer = true;
+            while (currentDate.DayOfWeek != DayOfWeek.Monday)
+            {
+                currentDate = currentDate.AddDays(-1);
+                if (WC.GetWorkDateTimeFromDate(currentDate) > 0)
+                {
+                    answer = false;
+                    break;
+                }
+            }
+            return answer;
         }
 
         private void ReadURLFromIni(string _path)
