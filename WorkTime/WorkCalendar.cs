@@ -140,9 +140,9 @@ namespace WorkTime
             return GetWorkDateTimeFromDate(today);
         }
 
-        public DateTime GetThisWeekWorkTime()
+        public Time GetThisWeekWorkTime()
         {
-            DateTime weekWorkTime = new DateTime();
+            Time weekWorkTime = new Time();
             DateTime currentDay = DateTime.Now;
             while (currentDay.DayOfWeek != DayOfWeek.Monday)
             {
@@ -151,11 +151,9 @@ namespace WorkTime
 
             for (int i = 0; i < 7; i++)
             {
-                weekWorkTime = weekWorkTime.AddHours(GetWorkDateTimeFromDate(currentDay));
+                weekWorkTime.AddTime(GetWorkDateTimeFromDate(currentDay), 0, 0);  
                 currentDay = currentDay.AddDays(1);
             }
-
-            Console.WriteLine(weekWorkTime);
             return weekWorkTime;
         }
     }

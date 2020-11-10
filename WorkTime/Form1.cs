@@ -18,6 +18,7 @@ namespace WorkTime
         DateTime Came;
         bool GO;
         WorkCalendar WC = new WorkCalendar();
+        Time weekTimeLeft = new Time();
         
         public Form1()
         {
@@ -31,11 +32,9 @@ namespace WorkTime
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            WC.GetThisWeekWorkTime();
-
-            Time tt = new Time();
-            tt.AddTime(24, 30, 20);
-            tt.AddTime(1, 29, 40);
+            weekTimeLeft = WC.GetThisWeekWorkTime();//еще залезть в файл, достать отработанное
+            
+            
 
         }
         

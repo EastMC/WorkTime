@@ -38,9 +38,19 @@ namespace WorkTime
             minutes += (_m + addMinutes);
             int addHours = minutes / 60;
             minutes = minutes % 60;
-            hours += (_h + addHours);
-            
+            hours += (_h + addHours);            
         }
+
+        public void SubstractTime(int _h, int _m, int _s)
+        {
+
+        }
+
+        public override string ToString()
+        {
+            return $"{hours}:{minutes}:{seconds}";
+        }
+
 
 
 
