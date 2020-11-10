@@ -33,11 +33,12 @@ namespace WorkTime
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
             weekTimeLeft = WC.GetThisWeekWorkTime();//еще залезть в файл, достать отработанное
-            
-            
+     
 
         }
         
+
+
         private void ReadURLFromIni(string _path)
         {
 
