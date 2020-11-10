@@ -37,6 +37,7 @@
             this.labelNow = new System.Windows.Forms.Label();
             this.labelWeekLeft = new System.Windows.Forms.Label();
             this.labelTimeWeekLeft = new System.Windows.Forms.Label();
+            this.buttonGone = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCame
@@ -46,7 +47,7 @@
             this.buttonCame.Name = "buttonCame";
             this.buttonCame.Size = new System.Drawing.Size(128, 44);
             this.buttonCame.TabIndex = 2;
-            this.buttonCame.Text = "Пришел";
+            this.buttonCame.Text = "Пришёл";
             this.buttonCame.UseVisualStyleBackColor = true;
             this.buttonCame.Click += new System.EventHandler(this.ButtonCame_Click);
             // 
@@ -121,11 +122,23 @@
             this.labelTimeWeekLeft.TabIndex = 7;
             this.labelTimeWeekLeft.Text = "            ";
             // 
+            // buttonGone
+            // 
+            this.buttonGone.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonGone.Location = new System.Drawing.Point(83, 551);
+            this.buttonGone.Name = "buttonGone";
+            this.buttonGone.Size = new System.Drawing.Size(128, 44);
+            this.buttonGone.TabIndex = 8;
+            this.buttonGone.Text = "Ушёл";
+            this.buttonGone.UseVisualStyleBackColor = true;
+            this.buttonGone.Click += new System.EventHandler(this.buttonGone_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 608);
+            this.Controls.Add(this.buttonGone);
             this.Controls.Add(this.labelTimeWeekLeft);
             this.Controls.Add(this.labelWeekLeft);
             this.Controls.Add(this.labelNow);
@@ -156,6 +169,7 @@
         private System.Windows.Forms.Label labelNow;
         private System.Windows.Forms.Label labelWeekLeft;
         private System.Windows.Forms.Label labelTimeWeekLeft;
+        private System.Windows.Forms.Button buttonGone;
     }
 }
 

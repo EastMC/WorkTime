@@ -111,5 +111,17 @@ namespace WorkTime
                 ButtonCame_Click(this, new EventArgs());
             }
         }
+
+        private void buttonGone_Click(object sender, EventArgs e)
+        {
+            int h = DateTime.Now.Hour;
+            int m = DateTime.Now.Minute;
+            string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
+            string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
+            AddConfig(this.Text + " " + H + ":" + M);
+
+
+
+        }
     }
 }
