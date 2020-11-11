@@ -18,27 +18,17 @@ namespace WorkTime
     }
     class WorkCalendar
     {
-        private static Dictionary<DateTime, int> workCalendar = new Dictionary<DateTime, int>();        
-        private static string url;
+        private static Dictionary<DateTime, int> workCalendar = new Dictionary<DateTime, int>();      
 
-        public string Url
+
+        public bool InitializeCalendar(string _url)
         {
-            set
+            try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(value);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    url = value;
-                }
-                else url = "";
+                ParseHTML(GetHTMLFromWebSite(_url));
             }
-            get { return url; }            
-        }
-
-        public void InitializeCalendar(string _url)
-        {
-            ParseHTML(GetHTMLFromWebSite(_url));
+            catch { return false; }
+            return true;
         }
 
         private string GetHTMLFromWebSite(string _url)

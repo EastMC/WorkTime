@@ -15,26 +15,58 @@ namespace WorkTime
 {
     public partial class Form1 : Form
     {
-        DateTime came;
-        Time toGo;
-        bool GO;
-        WorkCalendar WC = new WorkCalendar();
-        Time weekTimeLeft = new Time();
-        Time weekTimeLeftCount = new Time();
-        Timer mainTimer = new Timer();
-        
+        private DateTime came;
+        private Time toGo;
+        private bool isItTimeToGo = false;
+        private WorkCalendar WC = new WorkCalendar();
+        private Time weekTimeLeft = new Time();
+        private Time weekTimeLeftCount = new Time();
+        private Timer mainTimer = new Timer();
+        private ToolTip buttonSettingsHoverTip = new ToolTip();
+        private Settings settings;
+
+
         public Form1()
         {
             InitializeComponent();
+            settings = new Settings(this);
+            buttonSettingsHoverTip.SetToolTip(buttonSettings, "Изменить параметры");
             this.Text = DateTime.Today.ToLongDateString();
             mainTimer.Interval = 500;
             mainTimer.Tick += T_Tick;
-            //TopMost = true;
-            GO = false;
+            //TopMost = true;        
+            InitializeCalendar();
+        }
 
-            WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            weekTimeLeft = GetLeftWeekTime();                  
+        public void InitializeCalendar()
+        {
+            if (WC.InitializeCalendar(settings.GetURL()))
+            {
+                weekTimeLeft = GetLeftWeekTime();
+                UnblockInputs();
+            }
+            else
+            {
+                BlockInputs();
+                MessageBox.Show("Невозможно инициализировать рабочий календарь. Проверьте ссылку на сайт производственного календаря в параметрах.");
+            }
+        }
 
+        public bool IsURLValid(string _url)
+        {
+            return WC.InitializeCalendar(_url);
+        }
+
+        private void BlockInputs()
+        {
+            maskedTextBoxCame.Enabled = false;
+            buttonCame.Enabled = false;
+        }
+
+        private void UnblockInputs()
+        {
+            maskedTextBoxCame.Enabled = true;
+            buttonCame.Enabled = true;
         }
 
         private Time GetLeftWeekTime()
@@ -106,7 +138,7 @@ namespace WorkTime
             labelTimeWeekLeft.Text = weekTimeLeftCount.ToString();
 
 
-            if (Time.Now() >= toGo && !buttonCame.Enabled && !GO)
+            if (Time.Now() >= toGo && !buttonCame.Enabled && !isItTimeToGo)
             {
                 labelTimeGo.BackColor = Color.Green;
                 labelTimeGo.ForeColor = Color.Yellow;
@@ -120,7 +152,7 @@ namespace WorkTime
                 NI.Icon = this.Icon;
                 NI.Visible = true;
                 NI.ShowBalloonTip(1000);
-                GO = true;
+                isItTimeToGo = true;
 
             }
         }
@@ -191,6 +223,11 @@ namespace WorkTime
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveGoneTime();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            settings.ShowDialog();
         }
     }
 }

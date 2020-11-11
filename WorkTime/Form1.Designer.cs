@@ -38,6 +38,7 @@
             this.labelWeekLeft = new System.Windows.Forms.Label();
             this.labelTimeWeekLeft = new System.Windows.Forms.Label();
             this.buttonGone = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCame
@@ -136,11 +137,25 @@
             this.buttonGone.UseVisualStyleBackColor = true;
             this.buttonGone.Click += new System.EventHandler(this.buttonGone_Click);
             // 
+            // buttonSettings
+            // 
+            this.buttonSettings.BackgroundImage = global::WorkTime.Properties.Resources.settingsIcon;
+            this.buttonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.Location = new System.Drawing.Point(279, 12);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(25, 25);
+            this.buttonSettings.TabIndex = 9;
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 608);
+            this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonGone);
             this.Controls.Add(this.labelTimeWeekLeft);
             this.Controls.Add(this.labelWeekLeft);
@@ -174,6 +189,7 @@
         private System.Windows.Forms.Label labelWeekLeft;
         private System.Windows.Forms.Label labelTimeWeekLeft;
         private System.Windows.Forms.Button buttonGone;
+        private System.Windows.Forms.Button buttonSettings;
     }
 }
 
