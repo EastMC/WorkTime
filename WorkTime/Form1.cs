@@ -29,7 +29,7 @@ namespace WorkTime
             this.Text = DateTime.Today.ToLongDateString();
             mainTimer.Interval = 500;
             mainTimer.Tick += T_Tick;
-            TopMost = true;
+            //TopMost = true;
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
