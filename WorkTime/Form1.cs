@@ -15,25 +15,25 @@ namespace WorkTime
 {
     public partial class Form1 : Form
     {
-        DateTime Came;
+        DateTime came;
+        Time toGo;
         bool GO;
         WorkCalendar WC = new WorkCalendar();
         Time weekTimeLeft = new Time();
+        Time weekTimeLeftCount = new Time();
+        Timer mainTimer = new Timer();
         
         public Form1()
         {
             InitializeComponent();
-            this.Text = DateTime.Today.ToString().Split(' ')[0];
-            Timer t = new Timer();
-            t.Interval = 500;
-            t.Tick += T_Tick;
-            t.Start();
+            this.Text = DateTime.Today.ToLongDateString();
+            mainTimer.Interval = 500;
+            mainTimer.Tick += T_Tick;
             TopMost = true;
             GO = false;
 
             WC.InitializeCalendar("https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html");
-            weekTimeLeft = GetLeftWeekTime();
-            Console.WriteLine(weekTimeLeft);           
+            weekTimeLeft = GetLeftWeekTime();                  
 
         }
 
@@ -94,11 +94,19 @@ namespace WorkTime
         {
 
         }
+               
+
         private void T_Tick(object sender, EventArgs e)
         {
-            labelTimeNow.Text = DateTime.Now.ToString().Split(' ')[1];
+            DateTime now = DateTime.Now;
+            labelTimeNow.Text = now.ToLongTimeString();
+            int secondsFromCame = now.Hour * 60 * 60 + now.Minute * 60 + now.Second -
+                (came.Hour * 60 * 60 + came.Minute * 60 + came.Second);
+            weekTimeLeftCount = weekTimeLeft - new Time(0, 0, secondsFromCame);
+            labelTimeWeekLeft.Text = weekTimeLeftCount.ToString();
 
-            if (DateTime.Now >= Came && !buttonCame.Enabled && !GO)
+
+            if (Time.Now() >= toGo && !buttonCame.Enabled && !GO)
             {
                 labelTimeGo.BackColor = Color.Green;
                 labelTimeGo.ForeColor = Color.Yellow;
@@ -124,13 +132,13 @@ namespace WorkTime
             int m = 0;
             Int32.TryParse(maskedTextBoxCame.Text.Split(':')[1], out m);
 
-            Came = DateTime.Today;            
-            Came = Came.AddHours(h+WC.GetWorkDayTimeForToday());
-            Came = Came.AddMinutes(m);
-
-            labelTimeGo.Text = Came.ToString().Split(' ')[1];
+            DateTime now = DateTime.Now;
+            came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
+            toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
+            labelTimeGo.Text = toGo.ToString();
 
             buttonCame.Enabled = false;
+            buttonGone.Enabled = true;
             maskedTextBoxCame.Enabled = false;
 
             string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
@@ -138,6 +146,7 @@ namespace WorkTime
 
             AddConfig(this.Text + " " + H + ":" + M);
 
+            mainTimer.Start();
 
         }
               
@@ -164,14 +173,24 @@ namespace WorkTime
             }
         }
 
-        private void buttonGone_Click(object sender, EventArgs e)
+        private void SaveGoneTime()
         {
             int h = DateTime.Now.Hour;
             int m = DateTime.Now.Minute;
             string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
             string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
             AddConfig(this.Text + " " + H + ":" + M);
-            AddConfig(weekTimeLeft.ToString());
+            AddConfig(weekTimeLeftCount.ToString());
+        }
+
+        private void buttonGone_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveGoneTime();
         }
     }
 }

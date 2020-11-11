@@ -8,9 +8,9 @@ namespace WorkTime
 {
     class Time
     {
-        private int hours;
-        private int minutes;
-        private int seconds;
+        private int hours = 0;
+        private int minutes = 0;
+        private int seconds = 0;
 
         public string GetTime()
         {
@@ -19,15 +19,17 @@ namespace WorkTime
 
         public Time()
         {
-            hours = 0;
-            minutes = 0;
-            seconds = 0;
+          
         }
         public Time(int _h, int _m, int _s)
         {
-            hours = _h;
-            minutes = _m;
-            seconds = _s;
+            AddTime(_h, _m, _s);
+        }
+
+        public static Time Now()
+        {
+            DateTime now = DateTime.Now;
+            return new Time(now.Hour, now.Minute, now.Second);
         }
 
         public void AddTime(int _h, int _m, int _s)
@@ -46,9 +48,23 @@ namespace WorkTime
 
         public static Time operator -(Time t1, Time t2)
         {
-            Time result = t1;
-            t1.ReduceTime(t2.hours, t2.minutes, t2.seconds);
+            Time result = new Time(t1.hours, t1.minutes, t1.seconds);
+            result.ReduceTime(t2.hours, t2.minutes, t2.seconds);
             return result;
+        }
+
+        public static bool operator >=(Time t1, Time t2)
+        {
+            int t1AllSeconds = t1.seconds + t1.minutes * 60 + t1.hours * 60 * 60;
+            int t2AllSeconds = t2.seconds + t2.minutes * 60 + t2.hours * 60 * 60;
+            return t1AllSeconds >= t2AllSeconds ? true : false;
+        }
+
+        public static bool operator <=(Time t1, Time t2)
+        {
+            int t1AllSeconds = t1.seconds + t1.minutes * 60 + t1.hours * 60 * 60;
+            int t2AllSeconds = t2.seconds + t2.minutes * 60 + t2.hours * 60 * 60;
+            return t1AllSeconds <= t2AllSeconds ? true : false;
         }
 
         public void ReduceTime(int _h, int _m, int _s)
@@ -75,7 +91,11 @@ namespace WorkTime
 
         public override string ToString()
         {
-            return $"{hours}:{minutes}:{seconds}";
+            string h = hours >= 10 ? $"{hours}" : $"0{hours}";
+            string m = minutes >= 10 ? $"{minutes}" : $"0{minutes}";
+            string s = seconds >= 10 ? $"{seconds}" : $"0{seconds}";
+
+            return h + ":" + m + ":" + s;
         }
 
 
