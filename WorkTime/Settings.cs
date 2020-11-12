@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WorkTime
 {
@@ -14,10 +15,13 @@ namespace WorkTime
     {
         private Form1 parent;
         private string url;
+        const string INILocation = "\\settings.ini";
+        private INIManager iniManager;
 
         public Settings(Form1 _parent)
         {
             InitializeComponent();
+            iniManager = new INIManager(Directory.GetCurrentDirectory() + INILocation);
             parent = _parent;
             LoadURLfromINI();
             textBoxURL.Text = url;
@@ -33,12 +37,12 @@ namespace WorkTime
 
         private void LoadURLToINI()
         {
-
+            iniManager.WritePrivateString("web", "site", url);
         }
 
         private void LoadURLfromINI()
         {
-            url = "https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html";
+            url = iniManager.GetPrivateString("web", "site");
         }
 
         private bool IsURLValid()

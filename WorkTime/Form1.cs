@@ -24,6 +24,7 @@ namespace WorkTime
         private Timer mainTimer = new Timer();
         private ToolTip buttonSettingsHoverTip = new ToolTip();
         private Settings settings;
+        private const string journalFilePath = "journal.txt";
 
 
         public Form1()
@@ -79,7 +80,7 @@ namespace WorkTime
                 }
                 else
                 {
-                    using (StreamReader sr = new StreamReader("config.txt"))
+                    using (StreamReader sr = new StreamReader(journalFilePath))
                     {
                         string read = sr.ReadLine();
                         string leftWorkTimeString = string.Empty;
@@ -96,7 +97,7 @@ namespace WorkTime
             }
             catch
             {
-                MessageBox.Show("Отсутствует файл \"config.txt\" или в " +
+                MessageBox.Show("Отсутствует файл \"journal.txt\" или в " +
                     "существующем файле некорректная запись оставшегося рабочего времени.");
                 this.Close();
             }
@@ -120,11 +121,6 @@ namespace WorkTime
                 }
             }
             return answer;
-        }
-
-        private void ReadURLFromIni(string _path)
-        {
-
         }
                
 
@@ -185,7 +181,7 @@ namespace WorkTime
 
         private void AddConfig(string _text)
         {
-            using (StreamWriter sw = new StreamWriter("config.txt", true, System.Text.Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(journalFilePath, true, Encoding.Default))
             {
                 sw.WriteLine(_text);
             }
