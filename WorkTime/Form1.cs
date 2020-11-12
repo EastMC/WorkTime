@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -136,29 +132,37 @@ namespace WorkTime
 
             if (Time.Now() >= toGo && !buttonCame.Enabled && !isItTimeToGo)
             {
-                labelTimeGo.BackColor = Color.Green;
-                labelTimeGo.ForeColor = Color.Yellow;
-                labelGo.BackColor = Color.Green;
-                labelGo.ForeColor = Color.Yellow;
-
-                NotifyIcon NI = new NotifyIcon();
-                NI.BalloonTipText = "Андрюха, у нас труп! Возможно, криминал!";
-                NI.BalloonTipTitle = "По коням!";
-                NI.BalloonTipIcon = ToolTipIcon.Info;
-                NI.Icon = this.Icon;
-                NI.Visible = true;
-                NI.ShowBalloonTip(1000);
+                ColorMusicGotToGo();
+                NotifyGotToGo();                
                 isItTimeToGo = true;
-
             }
+        }
+
+        private void ColorMusicGotToGo()
+        {
+            labelTimeGo.BackColor = Color.Green;
+            labelTimeGo.ForeColor = Color.Yellow;
+            labelGo.BackColor = Color.Green;
+            labelGo.ForeColor = Color.Yellow;
+        }
+
+        private void NotifyGotToGo()
+        {
+            NotifyIcon NI = new NotifyIcon
+            {
+                BalloonTipText = "Андрюха, у нас труп! Возможно, криминал!",
+                BalloonTipTitle = "По коням!",
+                BalloonTipIcon = ToolTipIcon.Info,
+                Icon = this.Icon,
+                Visible = true
+            };
+            NI.ShowBalloonTip(1000);
         }
 
         private void ButtonCame_Click(object sender, EventArgs e)
         {
-            int h = 0;       
-            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[0], out h);
-            int m = 0;
-            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[1], out m);
+            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[0], out int h);
+            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[1], out int m);
 
             DateTime now = DateTime.Now;
             came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
@@ -187,11 +191,6 @@ namespace WorkTime
             }
         }
 
-
-
-        private void textBox1_Validating(object sender, CancelEventArgs e)
-        {
-        }
 
         private void maskedTextBoxCame_KeyPress(object sender, KeyPressEventArgs e)
         {
