@@ -162,25 +162,30 @@ namespace WorkTime
             Regex cameTimeRegular = new Regex(@"\d\d:\d\d");
             if (cameTimeRegular.IsMatch(MaskedTextBoxCame.Text))
             {
-
                 Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[0], out int h);
                 Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[1], out int m);
 
                 DateTime now = DateTime.Now;
                 came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
-                toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
-                labelTimeGo.Text = toGo.ToString();
+                if (now >= came)
+                {
+                    toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
+                    labelTimeGo.Text = toGo.ToString();
 
-                buttonCame.Enabled = false;
-                ButtonGone.Enabled = true;
-                MaskedTextBoxCame.Enabled = false;
+                    buttonCame.Enabled = false;
+                    ButtonGone.Enabled = true;
+                    ButtonSettings.Enabled = false;
+                    ButtonSettings.Visible = false;
+                    MaskedTextBoxCame.Enabled = false;
 
-                string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
-                string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
+                    string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
+                    string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
 
-                AddConfig(this.Text + " " + H + ":" + M);
+                    AddConfig(this.Text + " " + H + ":" + M);
 
-                mainTimer.Start();
+                    mainTimer.Start();
+                }
+                else MessageBox.Show($"Текущее время ({now.ToShortTimeString()}) меньше введенного. Проверьте данные ввода.");
             }
             else MessageBox.Show("Некорректно введено время. Формат ввода времени - HH:MM.");
 
