@@ -71,6 +71,7 @@
             this.MaskedTextBoxCame.Size = new System.Drawing.Size(177, 80);
             this.MaskedTextBoxCame.TabIndex = 1;
             this.MaskedTextBoxCame.ValidatingType = typeof(System.DateTime);
+            this.MaskedTextBoxCame.TextChanged += new System.EventHandler(this.MaskedTextBoxCame_TextChanged);
             this.MaskedTextBoxCame.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MaskedTextBoxCame_KeyPress_1);
             // 
             // labelTimeGo

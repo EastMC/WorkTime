@@ -3,8 +3,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
-
+using System.Text.RegularExpressions;
 
 namespace WorkTime
 {
@@ -160,24 +159,30 @@ namespace WorkTime
 
         private void ButtonCame_Click(object sender, EventArgs e)
         {
-            Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[0], out int h);
-            Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[1], out int m);
+            Regex cameTimeRegular = new Regex(@"\d\d:\d\d");
+            if (cameTimeRegular.IsMatch(MaskedTextBoxCame.Text))
+            {
 
-            DateTime now = DateTime.Now;
-            came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
-            toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
-            labelTimeGo.Text = toGo.ToString();
+                Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[0], out int h);
+                Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[1], out int m);
 
-            buttonCame.Enabled = false;
-            ButtonGone.Enabled = true;
-            MaskedTextBoxCame.Enabled = false;
+                DateTime now = DateTime.Now;
+                came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
+                toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
+                labelTimeGo.Text = toGo.ToString();
 
-            string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
-            string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
+                buttonCame.Enabled = false;
+                ButtonGone.Enabled = true;
+                MaskedTextBoxCame.Enabled = false;
 
-            AddConfig(this.Text + " " + H + ":" + M);
+                string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
+                string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
 
-            mainTimer.Start();
+                AddConfig(this.Text + " " + H + ":" + M);
+
+                mainTimer.Start();
+            }
+            else MessageBox.Show("Некорректно введено время. Формат ввода времени - HH:MM.");
 
         }
               
@@ -224,6 +229,11 @@ namespace WorkTime
         private void ButtonSettings_Click(object sender, EventArgs e)
         {
             settings.ShowDialog();
+        }
+
+        private void MaskedTextBoxCame_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
