@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.buttonCame = new System.Windows.Forms.Button();
             this.labelTimeNow = new System.Windows.Forms.Label();
-            this.maskedTextBoxCame = new System.Windows.Forms.MaskedTextBox();
+            this.MaskedTextBoxCame = new System.Windows.Forms.MaskedTextBox();
             this.labelTimeGo = new System.Windows.Forms.Label();
             this.labelGo = new System.Windows.Forms.Label();
             this.labelNow = new System.Windows.Forms.Label();
             this.labelWeekLeft = new System.Windows.Forms.Label();
             this.labelTimeWeekLeft = new System.Windows.Forms.Label();
-            this.buttonGone = new System.Windows.Forms.Button();
-            this.buttonSettings = new System.Windows.Forms.Button();
+            this.ButtonGone = new System.Windows.Forms.Button();
+            this.ButtonSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonCame
@@ -62,16 +62,16 @@
             this.labelTimeNow.Text = "             ";
             this.labelTimeNow.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // maskedTextBoxCame
+            // MaskedTextBoxCame
             // 
-            this.maskedTextBoxCame.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.maskedTextBoxCame.Location = new System.Drawing.Point(65, 12);
-            this.maskedTextBoxCame.Mask = "00:00";
-            this.maskedTextBoxCame.Name = "maskedTextBoxCame";
-            this.maskedTextBoxCame.Size = new System.Drawing.Size(177, 80);
-            this.maskedTextBoxCame.TabIndex = 1;
-            this.maskedTextBoxCame.ValidatingType = typeof(System.DateTime);
-            this.maskedTextBoxCame.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxCame_KeyPress);
+            this.MaskedTextBoxCame.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MaskedTextBoxCame.Location = new System.Drawing.Point(65, 12);
+            this.MaskedTextBoxCame.Mask = "00:00";
+            this.MaskedTextBoxCame.Name = "MaskedTextBoxCame";
+            this.MaskedTextBoxCame.Size = new System.Drawing.Size(177, 80);
+            this.MaskedTextBoxCame.TabIndex = 1;
+            this.MaskedTextBoxCame.ValidatingType = typeof(System.DateTime);
+            this.MaskedTextBoxCame.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MaskedTextBoxCame_KeyPress_1);
             // 
             // labelTimeGo
             // 
@@ -125,44 +125,44 @@
             this.labelTimeWeekLeft.Text = "            ";
             this.labelTimeWeekLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonGone
+            // ButtonGone
             // 
-            this.buttonGone.Enabled = false;
-            this.buttonGone.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonGone.Location = new System.Drawing.Point(83, 551);
-            this.buttonGone.Name = "buttonGone";
-            this.buttonGone.Size = new System.Drawing.Size(128, 44);
-            this.buttonGone.TabIndex = 8;
-            this.buttonGone.Text = "Ушёл";
-            this.buttonGone.UseVisualStyleBackColor = true;
-            this.buttonGone.Click += new System.EventHandler(this.buttonGone_Click);
+            this.ButtonGone.Enabled = false;
+            this.ButtonGone.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonGone.Location = new System.Drawing.Point(83, 551);
+            this.ButtonGone.Name = "ButtonGone";
+            this.ButtonGone.Size = new System.Drawing.Size(128, 44);
+            this.ButtonGone.TabIndex = 8;
+            this.ButtonGone.Text = "Ушёл";
+            this.ButtonGone.UseVisualStyleBackColor = true;
+            this.ButtonGone.Click += new System.EventHandler(this.ButtonGone_Click);
             // 
-            // buttonSettings
+            // ButtonSettings
             // 
-            this.buttonSettings.BackgroundImage = global::WorkTime.Properties.Resources.settingsIcon;
-            this.buttonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonSettings.FlatAppearance.BorderSize = 0;
-            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSettings.Location = new System.Drawing.Point(279, 12);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(25, 25);
-            this.buttonSettings.TabIndex = 9;
-            this.buttonSettings.UseVisualStyleBackColor = true;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            this.ButtonSettings.BackgroundImage = global::WorkTime.Properties.Resources.settingsIcon;
+            this.ButtonSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ButtonSettings.FlatAppearance.BorderSize = 0;
+            this.ButtonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonSettings.Location = new System.Drawing.Point(279, 12);
+            this.ButtonSettings.Name = "ButtonSettings";
+            this.ButtonSettings.Size = new System.Drawing.Size(25, 25);
+            this.ButtonSettings.TabIndex = 9;
+            this.ButtonSettings.UseVisualStyleBackColor = true;
+            this.ButtonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 608);
-            this.Controls.Add(this.buttonSettings);
-            this.Controls.Add(this.buttonGone);
+            this.Controls.Add(this.ButtonSettings);
+            this.Controls.Add(this.ButtonGone);
             this.Controls.Add(this.labelTimeWeekLeft);
             this.Controls.Add(this.labelWeekLeft);
             this.Controls.Add(this.labelNow);
             this.Controls.Add(this.labelGo);
             this.Controls.Add(this.labelTimeGo);
-            this.Controls.Add(this.maskedTextBoxCame);
+            this.Controls.Add(this.MaskedTextBoxCame);
             this.Controls.Add(this.labelTimeNow);
             this.Controls.Add(this.buttonCame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -182,14 +182,14 @@
 
         private System.Windows.Forms.Button buttonCame;
         private System.Windows.Forms.Label labelTimeNow;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxCame;
+        private System.Windows.Forms.MaskedTextBox MaskedTextBoxCame;
         private System.Windows.Forms.Label labelTimeGo;
         private System.Windows.Forms.Label labelGo;
         private System.Windows.Forms.Label labelNow;
         private System.Windows.Forms.Label labelWeekLeft;
         private System.Windows.Forms.Label labelTimeWeekLeft;
-        private System.Windows.Forms.Button buttonGone;
-        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Button ButtonGone;
+        private System.Windows.Forms.Button ButtonSettings;
     }
 }
 

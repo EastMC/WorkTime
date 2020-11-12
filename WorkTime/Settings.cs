@@ -24,16 +24,9 @@ namespace WorkTime
             iniManager = new INIManager(Directory.GetCurrentDirectory() + INILocation);
             parent = _parent;
             LoadURLfromINI();
-            textBoxURL.Text = url;
+            TextBoxURL.Text = url;
         }
 
-        private void buttonAccept_Click(object sender, EventArgs e)
-        {
-            url = textBoxURL.Text;
-            LoadURLToINI();
-            parent.InitializeCalendar();
-            this.Close();
-        }
 
         private void LoadURLToINI()
         {
@@ -61,16 +54,16 @@ namespace WorkTime
             ShowAllIsOK();
         }
 
-        private void textBoxURL_TextChanged(object sender, EventArgs e)
+        private void TextBoxURL_TextChanged(object sender, EventArgs e)
         {
-            url = textBoxURL.Text;
+            url = TextBoxURL.Text;
             ShowAllIsOK();
         }
 
         private void ShowAllIsOK()
         {
             bool result = IsURLValid();
-            buttonAccept.Enabled = result;
+            ButtonAccept.Enabled = result;
             if (result)
             {
                 labelValidity.ForeColor = Color.Green;
@@ -83,9 +76,19 @@ namespace WorkTime
             }
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+
+        private void ButtonAccept_Click(object sender, EventArgs e)
+        {
+            url = TextBoxURL.Text;
+            LoadURLToINI();
+            parent.InitializeCalendar();
+            this.Close();
+        }
+        
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }

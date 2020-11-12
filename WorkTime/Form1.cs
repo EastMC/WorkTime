@@ -27,7 +27,7 @@ namespace WorkTime
         {
             InitializeComponent();
             settings = new Settings(this);
-            buttonSettingsHoverTip.SetToolTip(buttonSettings, "Изменить параметры");
+            buttonSettingsHoverTip.SetToolTip(ButtonSettings, "Изменить параметры");
             this.Text = DateTime.Today.ToLongDateString();
             mainTimer.Interval = 500;
             mainTimer.Tick += T_Tick;
@@ -56,13 +56,13 @@ namespace WorkTime
 
         private void BlockInputs()
         {
-            maskedTextBoxCame.Enabled = false;
+            MaskedTextBoxCame.Enabled = false;
             buttonCame.Enabled = false;
         }
 
         private void UnblockInputs()
         {
-            maskedTextBoxCame.Enabled = true;
+            MaskedTextBoxCame.Enabled = true;
             buttonCame.Enabled = true;
         }
 
@@ -161,8 +161,8 @@ namespace WorkTime
 
         private void ButtonCame_Click(object sender, EventArgs e)
         {
-            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[0], out int h);
-            Int32.TryParse(maskedTextBoxCame.Text.Split(':')[1], out int m);
+            Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[0], out int h);
+            Int32.TryParse(MaskedTextBoxCame.Text.Split(':')[1], out int m);
 
             DateTime now = DateTime.Now;
             came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
@@ -170,8 +170,8 @@ namespace WorkTime
             labelTimeGo.Text = toGo.ToString();
 
             buttonCame.Enabled = false;
-            buttonGone.Enabled = true;
-            maskedTextBoxCame.Enabled = false;
+            ButtonGone.Enabled = true;
+            MaskedTextBoxCame.Enabled = false;
 
             string H = (h >= 10) ? h.ToString() : "0" + h.ToString();
             string M = (m >= 10) ? m.ToString() : "0" + m.ToString();
@@ -192,14 +192,6 @@ namespace WorkTime
         }
 
 
-        private void maskedTextBoxCame_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
-            {
-                ButtonCame_Click(this, new EventArgs());
-            }
-        }
-
         private void SaveGoneTime()
         {
             int h = DateTime.Now.Hour;
@@ -210,17 +202,27 @@ namespace WorkTime
             AddConfig(weekTimeLeftCount.ToString());
         }
 
-        private void buttonGone_Click(object sender, EventArgs e)
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(mainTimer.Enabled)
+                SaveGoneTime();
+        }
+
+
+        private void MaskedTextBoxCame_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                ButtonCame_Click(this, new EventArgs());
+            }
+        }
+        
+        private void ButtonGone_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            SaveGoneTime();
-        }
-
-        private void buttonSettings_Click(object sender, EventArgs e)
+        private void ButtonSettings_Click(object sender, EventArgs e)
         {
             settings.ShowDialog();
         }

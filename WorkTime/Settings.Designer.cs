@@ -29,46 +29,46 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.buttonAccept = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.textBoxURL = new System.Windows.Forms.TextBox();
+            this.ButtonAccept = new System.Windows.Forms.Button();
+            this.ButtonCancel = new System.Windows.Forms.Button();
+            this.TextBoxURL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelValidity = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // buttonAccept
+            // ButtonAccept
             // 
-            this.buttonAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAccept.Location = new System.Drawing.Point(289, 166);
-            this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(75, 23);
-            this.buttonAccept.TabIndex = 0;
-            this.buttonAccept.Text = "Принять";
-            this.buttonAccept.UseVisualStyleBackColor = true;
-            this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
+            this.ButtonAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonAccept.Location = new System.Drawing.Point(289, 166);
+            this.ButtonAccept.Name = "ButtonAccept";
+            this.ButtonAccept.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAccept.TabIndex = 0;
+            this.ButtonAccept.Text = "Принять";
+            this.ButtonAccept.UseVisualStyleBackColor = true;
+            this.ButtonAccept.Click += new System.EventHandler(this.ButtonAccept_Click);
             // 
-            // buttonCancel
+            // ButtonCancel
             // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCancel.Location = new System.Drawing.Point(12, 166);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Отмена";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonCancel.Location = new System.Drawing.Point(12, 166);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
+            this.ButtonCancel.TabIndex = 1;
+            this.ButtonCancel.Text = "Отмена";
+            this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
-            // textBoxURL
+            // TextBoxURL
             // 
-            this.textBoxURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBoxURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxURL.Location = new System.Drawing.Point(12, 25);
-            this.textBoxURL.Multiline = true;
-            this.textBoxURL.Name = "textBoxURL";
-            this.textBoxURL.Size = new System.Drawing.Size(352, 62);
-            this.textBoxURL.TabIndex = 2;
-            this.textBoxURL.Text = "https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html";
-            this.textBoxURL.TextChanged += new System.EventHandler(this.textBoxURL_TextChanged);
+            this.TextBoxURL.Location = new System.Drawing.Point(12, 25);
+            this.TextBoxURL.Multiline = true;
+            this.TextBoxURL.Name = "TextBoxURL";
+            this.TextBoxURL.Size = new System.Drawing.Size(352, 62);
+            this.TextBoxURL.TabIndex = 2;
+            this.TextBoxURL.Text = "https://calendar.yoip.ru/work/2020-proizvodstvennyj-calendar.html";
+            this.TextBoxURL.TextChanged += new System.EventHandler(this.TextBoxURL_TextChanged);
             // 
             // label1
             // 
@@ -97,9 +97,9 @@
             this.ClientSize = new System.Drawing.Size(376, 201);
             this.Controls.Add(this.labelValidity);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxURL);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonAccept);
+            this.Controls.Add(this.TextBoxURL);
+            this.Controls.Add(this.ButtonCancel);
+            this.Controls.Add(this.ButtonAccept);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -115,9 +115,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonAccept;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textBoxURL;
+        private System.Windows.Forms.Button ButtonAccept;
+        private System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.TextBox TextBoxURL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelValidity;
     }
