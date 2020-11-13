@@ -12,6 +12,7 @@ namespace WorkTime
         private DateTime came;
         private Time toGo;
         private bool isItTimeToGo = false;
+        private bool doesWeekEnd = false;
         private WorkCalendar WC = new WorkCalendar();
         private Time weekTimeLeft = new Time();
         private Time weekTimeLeftCount = new Time();
@@ -130,8 +131,15 @@ namespace WorkTime
             if (Time.Now() >= toGo && !buttonCame.Enabled && !isItTimeToGo)
             {
                 ColorMusicGotToGo();
-                NotifyGotToGo();                
+                NotifyGotToGo("По коням!", "Андрюха, у нас труп! Возможно, криминал!");                
                 isItTimeToGo = true;
+            }
+
+            if (weekTimeLeftCount.isNull() && !doesWeekEnd)
+            {
+                ColorMusicWeekEnd();
+                NotifyGotToGo("Неделя прошла!", "Ну и черт с ней!");
+                doesWeekEnd = true;
             }
         }
 
@@ -143,12 +151,20 @@ namespace WorkTime
             labelGo.ForeColor = Color.Yellow;
         }
 
-        private void NotifyGotToGo()
+        private void ColorMusicWeekEnd()
+        {
+            labelTimeWeekLeft.BackColor = Color.Green;
+            labelTimeWeekLeft.ForeColor = Color.Yellow;
+            labelWeekLeft.BackColor = Color.Green;
+            labelWeekLeft.ForeColor = Color.Yellow;
+        }
+
+        private void NotifyGotToGo(string _title, string _text)
         {
             NotifyIcon NI = new NotifyIcon
             {
-                BalloonTipText = "Андрюха, у нас труп! Возможно, криминал!",
-                BalloonTipTitle = "По коням!",
+                BalloonTipText = _text,
+                BalloonTipTitle = _title,
                 BalloonTipIcon = ToolTipIcon.Info,
                 Icon = this.Icon,
                 Visible = true

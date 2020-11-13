@@ -94,7 +94,11 @@ namespace WorkTime
             return h + ":" + m + ":" + s;
         }
 
-
+        public bool isNull()
+        {
+            int allSeconds = seconds + minutes * 60 + hours * 60 * 60;
+            return allSeconds <= 0 ? true : false;
+        }
 
 
     }
