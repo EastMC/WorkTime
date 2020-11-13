@@ -126,8 +126,7 @@ namespace WorkTime
                 (came.Hour * 60 * 60 + came.Minute * 60 + came.Second);
             weekTimeLeftCount = weekTimeLeft - new Time(0, 0, secondsFromCame);
             labelTimeWeekLeft.Text = weekTimeLeftCount.ToString();
-
-
+            
             if (Time.Now() >= toGo && !buttonCame.Enabled && !isItTimeToGo)
             {
                 ColorMusicGotToGo();
@@ -169,6 +168,9 @@ namespace WorkTime
                 came = new DateTime(now.Year, now.Month, now.Day, h, m, 0);
                 if (now >= came)
                 {
+                    if (WC.GetWorkDayTimeForToday() == 0)
+                        MessageBox.Show("Вы вышли поработать в выходной. Поздравляю!");
+
                     toGo = new Time(h + WC.GetWorkDayTimeForToday(), m, 0);
                     labelTimeGo.Text = toGo.ToString();
 
